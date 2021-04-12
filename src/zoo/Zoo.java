@@ -146,21 +146,22 @@ public class Zoo implements IZoo {
      */
     public byte addAnimal(int areaId, Animal animal) {
         IArea area = getArea(areaId);
+        Codes codes = new Codes();
         if (area instanceof HumanArea) {
-            return 1;
+            return codes.NOT_A_HABITAT;
         } else if (area.getClass().getName().toString() != animal.contained()) {
-            return 2;
+            return codes.WRONG_HABITAT;
         }
         AnimalHabitat habitat = (AnimalHabitat) area;
         ArrayList<Animal> animals = habitat.getAnimals();
         if (animals.size() >= habitat.getCapacity()) {
-            return 3;
+            return codes.HABITAT_FULL;
         } else if (!isAnimalCompatibleWithOthers(animal, animals)) {
-            return 4;
+            return codes.INCOMPATIBLE_INHABITANTS;
         } else {
             animals.add(animal);
             habitat.setAnimals(animals);
-            return 0;
+            return codes.ANIMAL_ADDED;
         }
     }
 
