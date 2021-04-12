@@ -251,8 +251,7 @@ public class Zoo implements IZoo {
             return;
         }
         unreachableAreas.remove(areaId);
-        ArrayList<Integer> areaIds = new ArrayList<Integer>();
-        areaIds.addAll(areas.get(areaId).getAdjacentAreas());
+        ArrayList<Integer> areaIds = areas.get(areaId).getAdjacentAreas();
         for (int i = 0; i < areaIds.size(); i++) {
             unreachableAreasRec(unreachableAreas, areaIds.get(i));
         }
