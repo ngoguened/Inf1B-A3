@@ -313,7 +313,7 @@ public class Zoo implements IZoo {
     }
 
     /**
-     * Calculates the change.Goes in order from largest to smallest denominations
+     * Calculates the change. Goes in order from largest to smallest denominations
      * for minimal number of change.
      * 
      * @param changePence     the change in pence as an integer that needs to be
@@ -339,7 +339,7 @@ public class Zoo implements IZoo {
     /**
      * Pays the entrance fee.
      * 
-     * @param cashInserted the ICashCount object represeting the cash inserted into
+     * @param cashInserted the ICashCount object representing the cash inserted into
      *                     the machine.
      * @return If the cash inserted is not enough to pay for the fee, cashInserted
      *         is returned. Otherwise, the correct change is returned.
