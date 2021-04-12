@@ -29,6 +29,10 @@ public abstract class AnimalHabitat extends Area {
         capacity = c;
     }
 
+    public boolean isHabitatFull() {
+        return animals.size() >= capacity;
+    }
+
     /**
      * @param as the ArrayList to set the animals as in the animal habitat.
      */

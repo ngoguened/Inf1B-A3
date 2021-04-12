@@ -154,7 +154,7 @@ public class Zoo implements IZoo {
         }
         AnimalHabitat habitat = (AnimalHabitat) area;
         ArrayList<Animal> animals = habitat.getAnimals();
-        if (animals.size() >= habitat.getCapacity()) {
+        if (habitat.isHabitatFull()) {
             return codes.HABITAT_FULL;
         } else if (!isAnimalCompatibleWithOthers(animal, animals)) {
             return codes.INCOMPATIBLE_INHABITANTS;
