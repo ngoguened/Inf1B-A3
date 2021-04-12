@@ -27,7 +27,8 @@ public abstract class Animal {
 	}
 
 	/**
-	 * Check whether two animals can live together.
+	 * Check whether two animals can live together. Animals are only compatible with
+	 * animals applicable to their area.
 	 * 
 	 * @param animal The animal for which to check compatibility with this animal.
 	 * @return Returns true for compatible animals and false otherwise.

@@ -44,7 +44,7 @@ public abstract class AnimalHabitat extends Area {
     }
 
     /**
-     * @return the maximum capaity of the animal habitat.
+     * @return the maximum capacity of the animal habitat.
      */
     public int getCapacity() {
         return capacity;
