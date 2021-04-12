@@ -169,15 +169,20 @@ public class Zoo implements IZoo {
 
     /**
      * Connects one area to another area. This connection is one way. Connections
-     * must be unique.
+     * must be unique. Given areas must exist. If already connected, does nothing.
      * 
      * @param fromAreaId the area receiving a connection.
      * @param toAreaId   the area fromAreaId is receiving.
+     * @throws IllegalArgumentException one or both of fromAreaId and toAreaId do not exist.
      */
     public void connectAreas(int fromAreaId, int toAreaId) {
-        if (!areas.get(fromAreaId).getAdjacentAreas().contains(toAreaId)) {
-            areas.get(fromAreaId).addAdjacentArea(toAreaId);
+        if (areas.get(fromAreaId).getAdjacentAreas().contains(toAreaId)) {
+            return;
         }
+        if (!areas.containsKey(fromAreaId) || !areas.containsKey(toAreaId)) {
+            throw new IllegalArgumentException("At least one argument does not exist in areas.");
+        }
+        areas.get(fromAreaId).addAdjacentArea(toAreaId);
     }
 
     /**
