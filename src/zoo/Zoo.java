@@ -360,7 +360,7 @@ public class Zoo implements IZoo {
         }
         int changePence = valueInsertedPence - entranceFeePence;
         ICashCount cashCountChange = new CashCount();
-        calculateChange(changePence, cashCountChange);
+        cashCountChange = calculateChange(changePence, cashCountChange);
         if (cashCountChange == null) {
             // Inserted money taken out and given back.
             for (int i = 0; i < CASH_VALUES.length; i++) {
@@ -628,5 +628,33 @@ public class Zoo implements IZoo {
                 : zoo.payEntranceFee(cashInserted).getNrNotes_5pounds();
         assert (zoo.cashCount.getNrNotes_10pounds() == 1);
         assert (zoo.calculateChange(501, cashInserted) == null);
+        for (int i = 0; i < CASH_VALUES.length; i++) {
+            zoo.setNrCash(cashSupply, CASH_VALUES[i], 0);
+        }
+        for (int i = 0; i < CASH_VALUES.length; i++) {
+            zoo.setNrCash(cashInserted, CASH_VALUES[i], 0);
+        }
+
+        cashSupply.setNrNotes_5pounds(2);
+        zoo.setCashSupply(cashSupply);
+        cashInserted.setNrCoins_2pounds(1);
+        zoo.payEntranceFee(cashInserted);
+        assert (cashSupply.getNrNotes_5pounds() == 2);
+
+        zoo.setEntranceFee(2, 0);
+        assert (zoo.payEntranceFee(cashInserted).getNrCoins_2pounds() == 0);
+
+        for (int i = 0; i < CASH_VALUES.length; i++) {
+            zoo.setNrCash(cashSupply, CASH_VALUES[i], 99);
+        }       
+        zoo.setCashSupply(cashSupply);
+ 
+        assert (zoo.payEntranceFee(cashInserted).getNrCoins_2pounds() == 0);
+
+        zoo.setEntranceFee(3, 0);
+        cashInserted.setNrCoins_2pounds(2);
+        
+        assert (zoo.payEntranceFee(cashInserted).getNrCoins_2pounds() == 0): zoo.payEntranceFee(cashInserted).getNrCoins_2pounds();
+        assert (zoo.payEntranceFee(cashInserted).getNrCoins_1pound() == 1): zoo.payEntranceFee(cashInserted).getNrCoins_1pound();
     }
 }
